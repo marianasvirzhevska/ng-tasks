@@ -1,0 +1,10 @@
+<div class="header">
+    <div class="container">
+        <span *ngIf="userService.name">
+            Hello, {{ userService.name }}
+        </span>
+        <span *ngIf="!userService.name">
+            Clicker game
+        </span>
+    </div>
+</div>
