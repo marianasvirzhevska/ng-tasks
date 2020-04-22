@@ -8,6 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { FormComponent } from './form/form.component';
 import { GameComponent } from './game/game.component';
 import { EggsComponent } from './eggs/eggs.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from './route.guard';
 
 @NgModule({
   declarations: [
@@ -15,14 +17,15 @@ import { EggsComponent } from './eggs/eggs.component';
     HeaderComponent,
     FormComponent,
     GameComponent,
-    EggsComponent
+    EggsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
