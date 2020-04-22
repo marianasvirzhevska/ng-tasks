@@ -9,7 +9,7 @@ import { UserService } from '../shared/services/user.service';
 export class FormComponent implements OnInit {
   name = '';
 
-  constructor(public userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }

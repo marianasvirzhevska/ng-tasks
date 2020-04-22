@@ -14,16 +14,16 @@ interface Result {
 })
 
 export class GameComponent implements OnInit {
-    timer: number = 10;
-    counter: number = 0;
+    timer = 10;
+    counter = 0;
     play = false;
     restart = false;
 
-    interval;
+    private interval;
 
     allResults: Result[] = [];
 
-    constructor(public userService: UserService) { }
+    constructor(private userService: UserService) { }
 
     ngOnInit(): void { }
 
@@ -32,16 +32,10 @@ export class GameComponent implements OnInit {
             if (this.timer > 0) {
                 this.timer--;
             } else {
-                const result = {
-                    name: this.userService.name,
-                    counter: this.counter,
-                    date: Date.now(),
-                }
-                
                 this.play = false;
                 this.restart = true;
-                this.allResults.push(result);
-                this.allResults = this.sortResults(this.allResults).slice(0, 10);
+
+                this.saveResults();
                 
                 clearInterval(this.interval);
             }
@@ -70,14 +64,17 @@ export class GameComponent implements OnInit {
     }
 
     sortResults(results: Result[]): Result[] {
-        return results.sort((a, b) => {
-            if (a.counter < b.counter) {
-                return 1;
-            }
-            if (a.counter > b.counter) {
-                return -1;
-            }
-            return 0;
-        })
+        return results.sort((a, b) => b.counter- a.counter)
+    }
+
+    saveResults(): void {
+        const result = {
+            name: this.userService.name,
+            counter: this.counter,
+            date: Date.now(),
+        }
+        
+        this.allResults.push(result);
+        this.allResults = this.sortResults(this.allResults).slice(0, 10);
     }
 }

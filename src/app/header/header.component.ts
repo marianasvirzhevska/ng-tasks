@@ -7,10 +7,14 @@ import { UserService } from '../shared/services/user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  name: string;
+  auth;
 
-  constructor(public userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.name = this.userService.name;
+    this.auth = this.userService.auth;
   }
 
 }

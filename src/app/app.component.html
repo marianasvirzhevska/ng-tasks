@@ -1,5 +1,5 @@
 <app-header></app-header>
 <div class="container">
-  <app-form></app-form>
-  <app-game></app-game>
+  <app-form *ngIf="!auth"></app-form>
+  <app-game *ngIf="auth"></app-game>
 </div>

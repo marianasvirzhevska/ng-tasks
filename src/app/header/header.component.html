@@ -1,10 +1,12 @@
 <div class="header">
     <div class="container">
-        <span *ngIf="userService.name">
-            Hello, {{ userService.name }}
+        <span *ngIf="auth; else noUser">
+            Hello, {{ name }}
         </span>
-        <span *ngIf="!userService.name">
-            Clicker game
-        </span>
+        <ng-template #noUser>     
+            <span>
+                Clicker game
+            </span>
+        </ng-template>
     </div>
 </div>

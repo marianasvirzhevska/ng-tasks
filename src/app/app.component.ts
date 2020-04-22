@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-homework';
+  auth = false;
 
-  constructor() {
+  constructor(private userService: UserService) {
 
   }
 
-
+  ngOnInit(): void {
+    this.auth = this.userService.auth;
+  }
 }
