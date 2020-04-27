@@ -1,0 +1,22 @@
+<div class="game">
+    <button class="game__action-button start"
+        (click)="startGame()"
+        *ngIf="!play&&!restart">Start Game!</button>
+    <div *ngIf="play" class="game__play">
+        <p class="game__counter">Your Score: <b>{{ counter }}</b></p>
+        <button class="game__action-button"
+            (click)="countClicks()">Click here</button>
+        <div class="timer">{{ timer }}</div>
+    </div>
+    <div *ngIf="restart" class="result">
+        <p class="result__title">Your total score: {{ counter }}</p>
+        <app-eggs [counter]="counter"></app-eggs>
+        <ol class="result__list" *ngIf="allResults.length">
+            <li class="result__item" [ngClass]="{'current': result.current}" *ngFor="let result of allResults">
+                <b>{{ result.name }}</b> - Score: {{ result.counter }}
+            </li>
+        </ol>
+        <button class="restart-button"
+            (click)="restartGame()">Restart</button>
+    </div>
+</div>
