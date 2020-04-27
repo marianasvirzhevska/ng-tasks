@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
-
 export class UserService {
-    name = this.getSavedUser();
-    auth = this.getSavedUser() ? true : false;
+    name: string;
+    auth: boolean;
 
-    addName(name: string) {
-        this.name = name;
-        this.auth = true;
-        localStorage.setItem('name', name);
+    constructor() {
+        this.name = this.getSavedUser();
+        this.auth = !!this.name;
     }
 
     getSavedUser(): string {
         const name = localStorage.getItem('name');
         return name ? name : '';
+    }
+
+    addName(name: string): void {
+        this.name = name;
+        this.auth = true;
+        localStorage.setItem('name', name);
     }
 }
 

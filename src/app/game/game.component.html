@@ -1,5 +1,5 @@
 <div class="game">
-    <button class="game__action-button"
+    <button class="game__action-button start"
         (click)="startGame()"
         *ngIf="!play&&!restart">Start Game!</button>
     <div *ngIf="play" class="game__play">
@@ -12,7 +12,7 @@
         <p class="result__title">Your total score: {{ counter }}</p>
         <app-eggs [counter]="counter"></app-eggs>
         <ol class="result__list" *ngIf="allResults.length">
-            <li class="result__item" *ngFor="let result of allResults">
+            <li class="result__item" [ngClass]="{'current': result.current}" *ngFor="let result of allResults">
                 <b>{{ result.name }}</b> - Score: {{ result.counter }}
             </li>
         </ol>

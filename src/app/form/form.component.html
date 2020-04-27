@@ -1,12 +1,14 @@
-<div class="form">
-    <h1 class="form__title">Greetings, Traveler! Wanna play?</h1>
-    <h2 class="form__subtitle">Let's get acquainted!</h2>
-    <input
-        type="text"
-        placeholder="Enter Your name"
-        [(ngModel)]="name"
-        (keydown.enter)="addName()"
-        class="form__input"
-        >
-    <button (click)="addName()" class="form__button">Send</button>
+<div class="container">
+    <div class="form">
+        <h1 class="form__title">Greetings, Traveler!<br/>Wanna play?</h1>
+        <h2 class="form__subtitle">Let's get acquainted!</h2>
+        <input
+            type="text"
+            placeholder="Enter Your name"
+            [(ngModel)]="name"
+            (keydown.enter)="addName()"
+            class="form__input"
+            >
+        <button (click)="addName()" class="form__button">Send</button>
+    </div>
 </div>

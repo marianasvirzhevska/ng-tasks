@@ -5,6 +5,7 @@ interface Result {
     name: string,
     counter: number,
     date?: any,
+    current: boolean,
 };
 
 @Component({
@@ -25,7 +26,9 @@ export class GameComponent implements OnInit {
 
     constructor(private userService: UserService) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        this.allResults = this.getStored();
+    }
 
     startTimer() {
         this.interval = setInterval(() => {
@@ -64,7 +67,7 @@ export class GameComponent implements OnInit {
     }
 
     sortResults(results: Result[]): Result[] {
-        return results.sort((a, b) => b.counter- a.counter)
+        return results.sort((a, b) => b.counter - a.counter)
     }
 
     saveResults(): void {
@@ -72,9 +75,18 @@ export class GameComponent implements OnInit {
             name: this.userService.name,
             counter: this.counter,
             date: Date.now(),
+            current: true,
         }
         
+        this.allResults.forEach(el => el.current = false);
         this.allResults.push(result);
         this.allResults = this.sortResults(this.allResults).slice(0, 10);
+
+        localStorage.setItem('results', JSON.stringify(this.allResults));
+    }
+
+    getStored(): Result[] {
+        const result = JSON.parse(localStorage.getItem('results'));
+        return result ? result : [];
     }
 }
